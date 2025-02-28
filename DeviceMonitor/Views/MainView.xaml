@@ -13,7 +13,49 @@
     <WindowChrome.WindowChrome>
         <WindowChrome NonClientFrameEdges="None" UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
-    <DockPanel>
+    <DockPanel> 
+        <DockPanel.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#072749" Offset="0"></GradientStop>
+                <GradientStop Color="#0C3E6E" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </DockPanel.Background>
+        <!--标题--> 
+        <!--
+        Grid 是 WPF 中常用的布局面板，可将其内部空间划分为行和列，方便安排子元素的布局；DockPanel 则用于按照指定的停靠方向（如顶部、底部、左侧、右侧）来排列其子元素
+        -->
+        <Grid DockPanel.Dock="Top" Height="80">
+            <!--左右外边距为 20 像素，上下外边距为 0 像素-->
+            <Image Source="../Assets/Images/Logo.png"
+                   Height="35"
+                   HorizontalAlignment="Left"
+                   Margin="20  ,0"
+                   > 
+                <!--阴影效果-->
+                <Image.Effect>
+                    <DropShadowEffect Color="Black"
+                                      BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Opacity="0.3"/>
+                </Image.Effect>
+            </Image>
+            <!--水平方向左对齐 垂直方向居中对齐 左外边距为 70 像素，上、右、下外边距为 0 像素。--> 
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70,0,0,0">
+                <TextBlock Text="远航企业-设备监控软件" Foreground="White"
+                           FontSize="18"
+                           />
+                    
+                <TextBlock Text="CopyRight ---------------------2025" Foreground="White" FontSize="11" />
+            </StackPanel>
+             
+            
+             
+        </Grid> 
+        <!--菜单-->
+        <Grid DockPanel.Dock="Left" Width="60">
+ 
+        </Grid>
         
+        <ContentControl/>
     </DockPanel>
 </Window>
