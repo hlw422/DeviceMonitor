@@ -13,6 +13,97 @@
     <WindowChrome.WindowChrome>
         <WindowChrome NonClientFrameEdges="None" UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
+     <!--全局配置-->
+    <Window.Resources>
+        <!--关闭按钮-->
+        <Style TargetType="Button" x:Key="CloseButtonStyle">
+            <Setter Property="Margin" Value="10,0"></Setter>
+            <Setter Property="Width" Value="80"></Setter>
+            <Setter Property="Height" Value="30 "></Setter>
+            <Setter Property="Foreground" Value="White" ></Setter>
+            <!--控件模板-->
+            <!--当你需要自定义一个控件的外观时，通常会创建一个 ControlTemplate。在这个模板中，使用 ContentPresenter 来显示控件原本的内容，这样可以在改变控件外观的同时，保留其内容显示的功能。-->
+            <Setter Property="Template">
+                <Setter.Value> 
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!--梯形按钮-->
+                            <!--任 意图形绘制-->
+                            <Border x:Name="border" Background="Orange" Width="30" HorizontalAlignment="Right"  CornerRadius="0,5,5,0"/>
+                            <Path x:Name="path" Data="M0 33,50 33 50 0 15 0" Fill="Orange" Stretch="Fill" Margin="0,0,20,0 ">
+                            </Path>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
+                            </ContentPresenter>
+                        </Grid>
+                        <!--事件定义-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Green"/>
+                                <Setter TargetName="path" Property="Fill" Value="Green"/>
+
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="Button" x:Key="SettingsButtonStyle">
+            <Setter Property="Margin" Value="10,0"></Setter>
+            <Setter Property="Width" Value="80"></Setter>
+            <Setter Property="Height" Value="30 "></Setter>
+            <Setter Property="Foreground" Value="White" ></Setter>
+            <!--控件模板-->
+            <!--当你需要自定义一个控件的外观时，通常会创建一个 ControlTemplate。在这个模板中，使用 ContentPresenter 来显示控件原本的内容，这样可以在改变控件外观的同时，保留其内容显示的功能。-->
+            <Setter Property="Template">
+                <Setter.Value> 
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!--梯形按钮-->
+                            <!--任 意图形绘制-->
+                            <Path x:Name="path" Data="M0 0,100 0 70 33 0 33" Stretch="Fill" Margin="20,0,0,0 ">
+                                <Path.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#00FFA500" Offset="0">
+                                             
+                                        </GradientStop>
+                                        <GradientStop Color="#99FFA500" Offset="0.8">
+
+                                        </GradientStop>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+                            </ContentPresenter>
+                        </Grid>
+                        <!--事件定义-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="path" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#00FFA500" Offset="0">
+                                            </GradientStop>
+                                            <GradientStop Color="#FFA500"  Offset="1">
+                                            </GradientStop>
+
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
+
     <DockPanel> 
         <DockPanel.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -25,6 +116,12 @@
         Grid 是 WPF 中常用的布局面板，可将其内部空间划分为行和列，方便安排子元素的布局；DockPanel 则用于按照指定的停靠方向（如顶部、底部、左侧、右侧）来排列其子元素
         -->
         <Grid DockPanel.Dock="Top" Height="80">
+
+
+            <Border Width="200" Height="40" BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Center"  CornerRadius="0,5,5,0">
+                <TextBlock Text="这是一个带边框的文本" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
             <!--左右外边距为 20 像素，上下外边距为 0 像素-->
             <Image Source="../Assets/Images/Logo.png"
                    Height="35"
@@ -43,13 +140,59 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70,0,0,0">
                 <TextBlock Text="远航企业-设备监控软件" Foreground="White"
                            FontSize="18"
-                           />
+                           
+                           >
+                    <!--水平拉伸-->
+                    <TextBlock.RenderTransform>
+                        <ScaleTransform ScaleX="1.1"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                
+
                     
                 <TextBlock Text="CopyRight ---------------------2025" Foreground="White" FontSize="11" />
             </StackPanel>
-             
+
             
-             
+            <Button HorizontalAlignment="Right" 
+                    Style="{StaticResource CloseButtonStyle}">
+                <!--Content 可以放任何内容--> 
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--字体图标·-->
+                        <TextBlock Text="&#xe601;"
+                                   FontFamily="{StaticResource Iconfont}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   >
+                        </TextBlock>
+                        <TextBlock Text="退出" VerticalAlignment="Center" Margin="5,0,0,0">                   
+                            </TextBlock>
+ 
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <Button VerticalAlignment="Center" 
+                HorizontalAlignment="Right" 
+                    Margin="0,0,70,0"
+                    Style="{StaticResource SettingsButtonStyle}">
+                <!--Content 可以放任何内容-->
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--字体图标·-->
+                        <TextBlock Text="&#xe68f;"
+                                   FontFamily="{StaticResource Iconfont}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   >
+                        </TextBlock>
+                        <TextBlock Text="设置" VerticalAlignment="Center" Margin="5,0,0,0">
+                        </TextBlock>
+
+                    </StackPanel>
+                </Button.Content>
+            </Button>
         </Grid> 
         <!--菜单-->
         <Grid DockPanel.Dock="Left" Width="60">

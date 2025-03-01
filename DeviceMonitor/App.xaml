@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:DeviceMonitor"
              StartupUri="Views/MainView.xaml">
     <Application.Resources>
-         
+        <!--全局字体-->
+        <FontFamily x:Key="Iconfont">./Assets/Fonts/iconfont.ttf#iconfont</FontFamily>
     </Application.Resources>
 </Application>
