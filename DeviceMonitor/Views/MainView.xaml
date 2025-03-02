@@ -102,6 +102,41 @@
             </Setter>
 
         </Style>
+
+        <Style TargetType="RadioButton" x:Key="MenuButtonStyle">
+            <Setter Property="Foreground" Value="#5FFF"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderBrush="Transparent"
+                                BorderThickness="3,0,0,0"
+                                Background="Transparent"
+                                Name="border">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              Margin="0,5,5,5"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="orange"/>
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#5FFF" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                            
+                                         </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground" Value="#FFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
     </Window.Resources>
 
     <DockPanel> 
@@ -196,9 +231,111 @@
         </Grid> 
         <!--菜单-->
         <Grid DockPanel.Dock="Left" Width="60">
- 
+
+            <Path Data="M0 0 55 20C60 22 60 25 60 30 L60 305C60 310 60 313 55 315L0 335"
+                  Fill="#2000"
+                  Margin="0,40"
+                  Stretch="Fill"
+                  StrokeThickness="2">
+
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Transparent" Offset="0"/>
+                        <GradientStop Color="Orange" Offset="0.4"/>
+                        <GradientStop Color="Orange" Offset="0.6"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                         
+                    </LinearGradientBrush>
+                </Path.Stroke>
+
+            </Path>
+
+            <StackPanel>
+                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xe638;"
+                                   FontFamily="{StaticResource Iconfont}"
+                                   FontSize="24"
+                                   Margin="0,3"
+                                   >
+
+                        </TextBlock>
+                        <TextBlock Text="首页"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,3"
+                                   FontSize="10"
+                                   />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xe617;"
+                   FontFamily="{StaticResource Iconfont}"
+                   FontSize="24"
+                   Margin="0,3"
+                   >
+
+                        </TextBlock>
+                        <TextBlock Text="设备"
+                   HorizontalAlignment="Center"
+                   Margin="0,3"
+                   FontSize="10"
+                   />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xe602;"
+                   FontFamily="{StaticResource Iconfont}"
+                   FontSize="24"
+                   Margin="0,3"
+                   >
+
+                        </TextBlock>
+                        <TextBlock Text="趋势"
+                   HorizontalAlignment="Center"
+                   Margin="0,3"
+                   FontSize="10"
+                   />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xec78;"
+                   FontFamily="{StaticResource Iconfont}"
+                   FontSize="24"
+                   Margin="0,3"
+                   >
+
+                        </TextBlock>
+                        <TextBlock Text="报警"
+                   HorizontalAlignment="Center"
+                   Margin="0,3"
+                   FontSize="10"
+                   />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="&#xe63f;"
+                   FontFamily="{StaticResource Iconfont}"
+                   FontSize="24"
+                   Margin="0,3"
+                   >
+
+                        </TextBlock>
+                        <TextBlock Text="配置"
+                   HorizontalAlignment="Center"
+                   Margin="0,3"
+                   FontSize="10"
+                   />
+                    </StackPanel>
+                </RadioButton>
+
+            </StackPanel>
         </Grid>
         
-        <ContentControl/>
+        <ContentControl Width="100"/>
     </DockPanel>
 </Window>
