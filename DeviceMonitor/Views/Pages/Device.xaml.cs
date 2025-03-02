@@ -1,5 +1,4 @@
-﻿using DeviceMonitor.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DeviceMonitor.Views
+namespace DeviceMonitor.Views.Pages
 {
     /// <summary>
-    /// MainView.xaml 的交互逻辑
+    /// Device.xaml 的交互逻辑
     /// </summary>
-    public partial class MainView : Window
-    { 
-        public MainView()
+    public partial class Device : UserControl
+    {
+        public Device()
         {
             InitializeComponent();
-            this.DataContext = new MainViewModel();
         }
     }
 }

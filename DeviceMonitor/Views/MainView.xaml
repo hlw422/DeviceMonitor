@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeviceMonitor.Views"
+        xmlns:pages="clr-namespace:DeviceMonitor.Views.Pages"
         mc:Ignorable="d"
         Background="#F7F9FA"
         Title="WPF" 
@@ -250,8 +251,14 @@
 
             </Path>
 
-            <StackPanel>
-                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+            <StackPanel VerticalAlignment="Center">
+                <RadioButton  Style="{StaticResource MenuButtonStyle}"
+                              Command ="{Binding MenuShowCommand}"
+                              IsChecked="True"
+                              >
+                    <RadioButton.CommandParameter>
+                        <pages:Home/>
+                    </RadioButton.CommandParameter>
                     <StackPanel>
                         <TextBlock Text="&#xe638;"
                                    FontFamily="{StaticResource Iconfont}"
@@ -268,7 +275,10 @@
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton  Style="{StaticResource MenuButtonStyle}">
+                <RadioButton  Style="{StaticResource MenuButtonStyle}" Command="{Binding MenuShowCommand}">
+                    <RadioButton.CommandParameter>
+                        <pages:Device/>
+                    </RadioButton.CommandParameter>
                     <StackPanel>
                         <TextBlock Text="&#xe617;"
                    FontFamily="{StaticResource Iconfont}"
@@ -335,7 +345,19 @@
 
             </StackPanel>
         </Grid>
-        
-        <ContentControl Width="100"/>
+
+        <ContentControl>
+            <!--NULL 或绑定失败时切换到Home页面-->
+            <ContentControl.Content>
+                <Binding Path="CurrentPage">
+                    <Binding.TargetNullValue>
+                        <pages:Home/>
+                    </Binding.TargetNullValue>
+                    <Binding.FallbackValue>
+                        <pages:Home/>
+                    </Binding.FallbackValue>
+                </Binding>
+            </ContentControl.Content>
+        </ContentControl>
     </DockPanel>
 </Window>
